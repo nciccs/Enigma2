@@ -148,7 +148,8 @@ function keyPressed()
         let result = engine.cipher(keyboardDisplay.pressedKey)
         if(result)
         {
-            input.value(input.value()+keyboardDisplay.pressedKey);
+            document.getElementById('plaintext').value = document.getElementById('plaintext').value + keyboardDisplay.pressedKey;
+            //input.value(input.value()+keyboardDisplay.pressedKey);
             inputEvent();
             keyboardDisplay.lightKey = result;
         }
