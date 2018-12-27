@@ -36,6 +36,7 @@ function createForm()
     input.attribute('type', 'text');
     input.style('background','rgba(255, 255, 255, 0.75)');
     input.style('font-family', 'monospace');
+    input.attribute('value', '')
     //input.style('background','rgba(255, 255, 255, 128)');
     //input.attribute('autofocus','');
     //input.attribute('onblur','this.focus()');
@@ -148,12 +149,9 @@ function keyPressed()
         let result = engine.cipher(keyboardDisplay.pressedKey)
         if(result)
         {
-            //document.getElementById('plaintext').value = document.getElementById('plaintext').value + keyboardDisplay.pressedKey;
-
-            document.getElementsByTagName('INPUT')[0].value = document.getElementsByTagName('INPUT')[0].value + keyboardDisplay.pressedKey;
-
-            //input.value(input.value()+keyboardDisplay.pressedKey);
+            input.value(input.value()+keyboardDisplay.pressedKey);
             inputEvent();
+
             keyboardDisplay.lightKey = result;
         }
     }
@@ -178,6 +176,9 @@ function mousePressed()
         let result = engine.cipher(keyboardDisplay.pressedKey)
         if(result != null)
         {
+            input.value(input.value()+keyboardDisplay.pressedKey);
+            inputEvent();
+
             keyboardDisplay.lightKey = result;
         }
 
