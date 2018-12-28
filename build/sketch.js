@@ -65,11 +65,11 @@ function createForm()
     output.attribute('placeholder', 'Ciphertext');
     input.attribute('type', 'text');
 
-    output.attribute('disabled', 'disabled');
+    //output.attribute('disabled', 'disabled');
     output.style('background', 'rgba(221, 221, 221, 0.75)');
 
     output.style('font-family', 'monospace');
-    //output.attribute('readonly', 'readonly');
+    output.attribute('readonly', 'readonly');
     //output.style('background', '#dddddd');
     //output.value('testing testing');
 
@@ -98,6 +98,7 @@ function inputEvent()
             {
                 if(i == input.value().length-1)
                 {
+                    //alert("here");
                     keyboardDisplay.lightKey = result;
                 }
 
@@ -190,7 +191,6 @@ function mousePressed()
 
 function mouseReleased()
 {
-    keyboardDisplay.lightKey = '';
     keyboardDisplay.pressedKey = '';   
  
     let toSave = false;
@@ -204,7 +204,10 @@ function mouseReleased()
     if(toSave)
     {
         engine.saveRotors();
+        inputEvent();
     }
+
+    keyboardDisplay.lightKey = '';
 }
 
 function mouseDragged()
