@@ -205,7 +205,7 @@ function mouseReleased()
     //     inputEvent();
     }
 
-    // keyboardDisplay.lightKey = '';
+    keyboardDisplay.lightKey = '';
 }
 
 function mouseDragged()
