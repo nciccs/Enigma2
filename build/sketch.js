@@ -42,10 +42,12 @@ function createForm()
     //input.attribute('onblur','this.focus()');
 
     input.input(inputEvent);
-    //input.attribute('onkeypress', 'inputEvent()');
+    //document.getElementById('plaintext').addEventListener('paste', pasteEvent);
     //input.attribute('onkeydown', 'inputEvent()');
+    //input.attribute('onkeypress', 'inputEvent()'); //doesn't deal with backspace
     //input.attribute('onpaste', 'pasteEvent()');
     //input.attribute('oninput', 'inputEvent()');
+
 
     //input.changed(inputEvent);
     // let inputLabel = createElement('label', 'Plaintext');
@@ -63,7 +65,8 @@ function createForm()
     output.style('text-transform', 'uppercase');
     output.position(input.x, input.y+input.height + 10);
     output.attribute('placeholder', 'Ciphertext');
-    input.attribute('type', 'text');
+    output.attribute('type', 'text');
+    output.attribute('value', '')
 
     //output.attribute('disabled', 'disabled');
     output.style('background', 'rgba(221, 221, 221, 0.75)');
@@ -76,11 +79,6 @@ function createForm()
     // let outputLabel = createElement('label', 'Ciphertext');
     // outputLabel.style('font-size', '23px');
     // outputLabel.position(output.x-outputLabel.width-35, output.y);
-}
-
-function pasteEvent()
-{
-    alert("paste");
 }
 
 function inputEvent()
@@ -203,11 +201,11 @@ function mouseReleased()
 
     if(toSave)
     {
-        engine.saveRotors();
-        inputEvent();
+         engine.saveRotors();
+    //     inputEvent();
     }
 
-    keyboardDisplay.lightKey = '';
+    // keyboardDisplay.lightKey = '';
 }
 
 function mouseDragged()
