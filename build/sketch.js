@@ -117,7 +117,7 @@ function createHelp()
     "\n"+
     "Before typing a message, both the person sending and the person receiving the message must have the same settings.\n"+
     "\n"+
-    "The sender type in a message in plaintext, then sends the scrambled ciphertext.\n"+
+    "The sender types in a message in plaintext, then sends the scrambled ciphertext.\n"+
     "The receiver input the scrambled message to receive decrypted message.\n"+
     "\n"+
     "The settings are: Rotor Order, Rotor Setting, Ring Setting, Reflector, Plugboard Setting\n"+
