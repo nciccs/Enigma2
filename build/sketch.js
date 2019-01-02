@@ -92,7 +92,7 @@ function createHelp()
     topDiv.style('font-family', 'Arial');
 
     //let a = createA('javascript:void(0)', '&times;');
-    let a = createA('javascript:void(0)', '&#10006;');
+    let a = createA('javascript:void(0)', 'Close &#10006;');
     a.parent(topDiv);
     a.mouseClicked(closeHelpMenu);
     a.style('position', 'absolute');
@@ -102,8 +102,8 @@ function createHelp()
     a.style('margin-right', '5px');
     a.style('text-decoration', 'none');
     a.style('color', '#111');
-    a.style('font-size', '24px');
-    a.style('font-family', 'Arial');
+    a.style('font-size', '20px');
+    //a.style('font-family', 'Arial');
     a.style('display', 'block');
 
     let contentDiv = createDiv();
