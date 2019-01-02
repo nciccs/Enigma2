@@ -133,8 +133,10 @@ function createHelp()
     "The red bar indicator shows where rotor will be placed in rotor slot.\n" +
     "\n"+
     "Rotor Setting\n" +
-    "The rotor setting can be adjusted by clicking on the rotor, but not the area where alphabet letter and number pairs are shown.\n" +
     "The red letter/number shows the current rotor setting.\n" +
+    "The rotor setting can be adjusted by clicking on the rotor, but not the area where alphabet letter and number pairs are shown.\n" +
+    "Click top half of the area to rotate rotor upwards.\n" +
+    "Click lower half of the area to rotate rotor downwards.\n" +
     "\n"+
     "Ring Setting\n" +
     "The ring is the area on the rotor with letter/number pairs: A01, B02, C03... Z26\n" +
