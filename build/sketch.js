@@ -102,8 +102,8 @@ function createHelp()
     a.style('margin-right', '5px');
     a.style('text-decoration', 'none');
     a.style('color', '#111');
-    a.style('font-size', '20px');
-    //a.style('font-family', 'Arial');
+    a.style('font-size', '24px');
+    a.style('font-family', 'Arial');
     a.style('display', 'block');
 
     let contentDiv = createDiv();
