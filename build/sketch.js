@@ -3,8 +3,6 @@ var outputText = '';
 var keyboardDisplay; 
 var plugboard;
 
-//var topDrawObject;
-
 var input;
 var output;
 
@@ -22,6 +20,7 @@ function setup()
     engine = new Engine(plugboard);
 
     createForm();
+    createHelp();
 }
 
 function createForm()
@@ -37,26 +36,7 @@ function createForm()
     input.style('background','rgba(255, 255, 255, 0.75)');
     input.style('font-family', 'monospace');
     input.attribute('value', '')
-    //input.style('background','rgba(255, 255, 255, 128)');
-    //input.attribute('autofocus','');
-    //input.attribute('onblur','this.focus()');
-
     input.input(inputEvent);
-    //document.getElementById('plaintext').addEventListener('paste', pasteEvent);
-    //input.attribute('onkeydown', 'inputEvent()');
-    //input.attribute('onkeypress', 'inputEvent()'); //doesn't deal with backspace
-    //input.attribute('onpaste', 'pasteEvent()');
-    //input.attribute('oninput', 'inputEvent()');
-
-
-    //input.changed(inputEvent);
-    // let inputLabel = createElement('label', 'Plaintext');
-    // inputLabel.style('font-size', '23px');
-    // inputLabel.position(input.x-inputLabel.width-30, input.y);
-
-
-    //input.attribute('onpaste', 'pasteEvent()');
-
 
     output = createInput();
     output.id('ciphertext');
@@ -67,18 +47,129 @@ function createForm()
     output.attribute('placeholder', 'Ciphertext');
     output.attribute('type', 'text');
     output.attribute('value', '')
-
-    //output.attribute('disabled', 'disabled');
     output.style('background', 'rgba(221, 221, 221, 0.75)');
-
     output.style('font-family', 'monospace');
     output.attribute('readonly', 'readonly');
-    //output.style('background', '#dddddd');
-    //output.value('testing testing');
+}
 
-    // let outputLabel = createElement('label', 'Ciphertext');
-    // outputLabel.style('font-size', '23px');
-    // outputLabel.position(output.x-outputLabel.width-35, output.y);
+function createHelp()
+{
+    let helpDiv = createDiv();
+
+    helpDiv.style('width', ''+width+'px');
+    helpDiv.style('height', 'auto');
+    helpDiv.position(0, 0);
+//helpDiv.style('pointer-events', 'none;');
+
+    let helpButton = createButton("? Help");
+    helpButton.parent(helpDiv);
+    helpButton.style('font-size', '20px');
+    helpButton.style('float', 'right');
+    helpButton.mouseClicked(openHelpMenu);
+
+    let helpMenu = createDiv();
+    helpMenu.parent(helpDiv);
+    helpMenu.id('helpMenu');
+    helpMenu.style('z-index', '5');
+    helpMenu.style('font-size', '20px');
+    helpMenu.style('background-color','#f1f1f1');
+    helpMenu.style('position', 'fixed');
+    helpMenu.style('width', '0');
+    //helpMenu.style('height', 'auto');
+    helpMenu.style('height', height+'px');
+    helpMenu.style('right', '0');
+    helpMenu.style('top', '0');
+    //helpMenu.style('overflow','auto');
+    //helpMenu.style('overflow','scroll');
+    helpMenu.style('overflow','hidden');
+    helpMenu.style('transition', '0.5s');
+
+    let topDiv = createDiv('&nbsp;');
+    //let topDiv = createDiv('');
+    topDiv.parent(helpMenu);
+    topDiv.style('width', 'auto');
+    topDiv.style('height', 'auto');
+    topDiv.style('font-family', 'Arial');
+
+    //let a = createA('javascript:void(0)', '&times;');
+    let a = createA('javascript:void(0)', '&#10006;');
+    a.parent(topDiv);
+    a.mouseClicked(closeHelpMenu);
+    a.style('position', 'absolute');
+    a.style('top', '0');
+    a.style('right', '0');
+    a.style('float', 'right');
+    a.style('margin-right', '5px');
+    a.style('text-decoration', 'none');
+    a.style('color', '#111');
+    a.style('font-size', '20px');
+    //a.style('font-family', 'Arial');
+    a.style('display', 'block');
+
+    let contentDiv = createDiv();
+    contentDiv.parent(helpMenu);
+    contentDiv.style('white-space', 'pre-wrap;');
+    contentDiv.style('width', '400px');
+    contentDiv.style('height', '100%');
+    contentDiv.style('overflow', 'scroll');
+
+    let content = createElement('pre',"Instructions\n"+
+    "\n"+
+    "Before typing a message, both the person sending and the person receiving the message must have the same settings.\n"+
+    "\n"+
+    "The sender type in a message in plaintext, then sends the scrambled ciphertext.\n"+
+    "The receiver input the scrambled message to receive decrypted message.\n"+
+    "\n"+
+    "The settings are: Rotor Order, Rotor Setting, Ring Setting, Reflector, Plugboard Setting\n"+
+    "\n"+
+    "The following will describe how to adjust the settings.\n"+
+    "\n"+
+    "Rotor Order\n" +
+    "The rotor slot is located at centre top.\n" +
+    "The rotors are labelled: I, II, III, IV, V\n" +
+    "Drag rotor in rotor slot area to change order.\n" +
+    "Drag rotor out of rotor slot area to remove rotor.\n" +
+    "Drag rotor onto rotor slot area to add rotor.\n" +
+    "The red bar indicator shows where rotor will be placed in rotor slot.\n" +
+    "\n"+
+    "Rotor Setting\n" +
+    "The rotor setting can be adjusted by clicking on the rotor, but not the area where alphabet letter and number pairs are shown.\n" +
+    "The red letter/number shows the current rotor setting.\n" +
+    "\n"+
+    "Ring Setting\n" +
+    "The ring is the area on the rotor with letter/number pairs: A01, B02, C03... Z26\n" +
+    "The red &lt; points to the current ring setting.\n" +
+    "Click top half of ring to rotate ring upwards.\n" +
+    "Click lower half of ring to rotate ring downwards.\n" +
+    "\n"+
+    "Reflector\n" +
+    "Reflector slot is located left of rotor slots.\n" +
+    "The reflectors are labelled: B or C\n" +
+    "Drag reflector out of reflector slot area to remove reflector.\n" +
+    "Drag reflector onto empty reflector area to add reflector.\n" +
+    "\n"+
+    "Plugboard Setting\n" +
+    "Plug slots are located below the keys.\n" +
+    "A cable has plugs on both ends connected by a wire.\n" +
+    "Connect a cable between 2 plug slots to form a plugboard setting.\n" +
+    "Drag plug out of plug slot to disconnect cable.\n" +
+    "Drag plug onto empty plug slot to connect one end of cable.\n"
+    );
+
+    content.parent(contentDiv);
+    content.style('white-space', 'pre-wrap');
+}
+
+function openHelpMenu()
+{
+    //document.getElementById("helpMenu").style.display = "block";
+    document.getElementById("helpMenu").style.width = "400px";
+}
+
+function closeHelpMenu()
+{
+    //document.getElementById("helpMenu").style.display = "none";
+    document.getElementById("helpMenu").style.width = "0";
 }
 
 function inputEvent()

@@ -8,7 +8,8 @@ class Rotor
         this.color = 255;
 
         //this.x = width * 0.85;
-        this.x = width - Rotor.START_WIDTH / 2 - 1;
+        this.x = width * 0.87;
+        //this.x = width - Rotor.START_WIDTH / 2 - 1;
         this.y = 100;
 
         this.width = Rotor.START_WIDTH;

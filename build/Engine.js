@@ -36,6 +36,25 @@ class Engine
         this.saveRotors();
     }
 
+    cipherString(inStirng)
+    {
+        let outputText = '';
+
+        for(let i = 0; i < inStirng.length; i++)
+        {
+            if(/^[a-zA-Z]+$/.test(inStirng[i]))
+            {
+                let result = engine.cipher(input.value()[i])
+                if(result)
+                {
+                    outputText += result;
+                }
+            }
+        }
+
+        return outputText;
+    }
+
     saveRotors()
     {
         this.savedRotors = [];

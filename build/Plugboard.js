@@ -51,8 +51,10 @@ class Plugboard
         for(let i = 0; i < 13; i++)
         {
             let y = this.y+2*Plugboard.START_SPACE_Y;
-            let plug1 = new Plug(this, 75-13, y, cableColors[i]);
-            let plug2  = new Plug(this, 125-13, y, cableColors[i]);
+            let plug1 = new Plug(this, width*0.07, y, cableColors[i]);
+            let plug2  = new Plug(this, width*0.07+50, y, cableColors[i]);
+            //let plug1 = new Plug(this, 75-13, y, cableColors[i]);
+            //let plug2  = new Plug(this, 125-13, y, cableColors[i]);
             //let plug1 = new Plug(this, 75+i-13, 550, cableColors[i]);
             //let plug2  = new Plug(this, 125+i-13, 550, cableColors[i]);
             //let plug1 = new Plug(this, 75-13, 550, cableColors[i]);
