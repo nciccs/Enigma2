@@ -117,6 +117,7 @@ function createHelp()
 
     content.style('width', '100%');
     content.style('height', '100%');
+    content.style('overflow', 'scroll');
 
     //content.html();
 /*
