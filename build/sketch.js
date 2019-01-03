@@ -59,7 +59,6 @@ function createHelp()
     helpDiv.style('width', ''+width+'px');
     helpDiv.style('height', 'auto');
     helpDiv.position(0, 0);
-//helpDiv.style('pointer-events', 'none;');
 
     let helpButton = createButton("? Help");
     helpButton.parent(helpDiv);
@@ -102,7 +101,7 @@ function createHelp()
     a.style('margin-right', '5px');
     a.style('text-decoration', 'none');
     a.style('color', '#111');
-    a.style('font-size', '20px');
+    a.style('font-size', '23px');
     //a.style('font-family', 'Arial');
     a.style('display', 'block');
 
