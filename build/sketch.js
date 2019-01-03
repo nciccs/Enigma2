@@ -59,6 +59,7 @@ function createHelp()
     helpDiv.style('width', ''+width+'px');
     helpDiv.style('height', 'auto');
     helpDiv.position(0, 0);
+//helpDiv.style('pointer-events', 'none;');
 
     let helpButton = createButton("? Help");
     helpButton.parent(helpDiv);
@@ -101,7 +102,7 @@ function createHelp()
     a.style('margin-right', '5px');
     a.style('text-decoration', 'none');
     a.style('color', '#111');
-    a.style('font-size', '23px');
+    a.style('font-size', '24px');
     //a.style('font-family', 'Arial');
     a.style('display', 'block');
 
@@ -110,17 +111,8 @@ function createHelp()
     contentDiv.style('white-space', 'pre-wrap;');
     contentDiv.style('width', '400px');
     contentDiv.style('height', '100%');
-    //contentDiv.style('overflow', 'scroll');
+    contentDiv.style('overflow', 'scroll');
 
-    let content = createElement('embed');
-    content.attribute('src', 'Instructions.html');
-
-    content.style('width', '100%');
-    content.style('height', '100%');
-    content.style('overflow', 'scroll');
-
-    //content.html();
-/*
     let content = createElement('pre',"Instructions\n"+
     "\n"+
     "Before typing a message, both the person sending and the person receiving the message must have the same settings.\n"+
@@ -164,10 +156,12 @@ function createHelp()
     "Connect a cable between 2 plug slots to form a plugboard setting.\n" +
     "Drag plug out of plug slot to disconnect cable.\n" +
     "Drag plug onto empty plug slot to connect one end of cable.\n"
-    );*/
+    );
 
     content.parent(contentDiv);
-    //content.style('white-space', 'pre-wrap');
+    content.style('white-space', 'pre-wrap');
+    content.style('font-size', '24px');
+
 }
 
 function openHelpMenu()
