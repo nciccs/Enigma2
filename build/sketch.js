@@ -90,6 +90,7 @@ function createHelp()
     topDiv.style('width', 'auto');
     topDiv.style('height', 'auto');
     topDiv.style('font-family', 'Arial');
+    topDiv.style('font-size', '24px');
 
     //let a = createA('javascript:void(0)', '&times;');
     let a = createA('javascript:void(0)', 'Close &#10006;');
@@ -111,6 +112,7 @@ function createHelp()
     contentDiv.style('white-space', 'pre-wrap;');
     contentDiv.style('width', '400px');
     contentDiv.style('height', '100%');
+
     contentDiv.style('overflow', 'scroll');
 
     let content = createElement('pre',"Instructions\n"+
@@ -161,6 +163,8 @@ function createHelp()
     content.parent(contentDiv);
     content.style('white-space', 'pre-wrap');
     content.style('font-size', '24px');
+
+    content.style('margin-top', '0');
 
 }
 
