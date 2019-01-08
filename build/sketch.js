@@ -38,6 +38,8 @@ function createForm()
     input.attribute('value', '')
     input.input(inputEvent);
 
+    input.attribute('onblur', 'inputOnBlur()');
+
     output = createInput();
     output.id('ciphertext');
     output.size(width/1.7, output.height);
@@ -50,6 +52,11 @@ function createForm()
     output.style('background', 'rgba(221, 221, 221, 0.75)');
     output.style('font-family', 'monospace');
     output.attribute('readonly', 'readonly');
+}
+
+function inputOnBlur()
+{
+    scrollElementToRight("plaintext");
 }
 
 function createHelp()
@@ -205,6 +212,17 @@ function inputEvent()
     }
 
     output.value(outputValue);
+
+    scrollElementToRight('ciphertext');
+}
+
+function scrollElementToRight(id)
+{
+    let element = document.getElementById(id);
+    if(element)
+    {
+        element.scrollLeft = element.scrollWidth;
+    }
 }
 
 function windowResized()
@@ -249,6 +267,8 @@ function keyPressed()
         {
             input.value(input.value()+keyboardDisplay.pressedKey);
             inputEvent();
+
+            scrollElementToRight("plaintext");
 
             keyboardDisplay.lightKey = result;
         }

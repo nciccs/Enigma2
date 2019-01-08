@@ -47,14 +47,14 @@ class Rotor
         //so all 3 rotor moves at the same time, middle basically moved twice, double stepping occurs
         this.notch = 'Q'.charCodeAt() - 'A'.charCodeAt();
 
-        this.ring = new Ring(this);
-
         //offset from the start, translates original position to map position
         this.translate = 0;
 
         this.displayText = false;
 
         WidgetHandler.add(this);
+
+        this.ring = new Ring(this);
     }
 
     //static variables

@@ -6,9 +6,7 @@ class Ring
 
         this.red = color(255, 0, 0);
 
-        //this.displayColor = color(0, 0, 128);
         this.displayColor = this.red;
-        //this.displayColor = 0;
 
         this.x;
         this.y;
@@ -23,13 +21,8 @@ class Ring
         
         this.length = 26;
 
-        this.speed = 10;
-        this.direction = 0;
-
-        this.previousTime = Date.now() / 1000;
-        this.startTime = this.previousTime;
-        this.textY = 0;
-        this.currentTime = 0;
+        this.previousTopLetter = this.rotor.translate + this.ringSetting + Math.floor(this.length/2);
+        this.isMoving = false;
     }
 
     get deltaTime()
@@ -42,7 +35,7 @@ class Ring
         return Date.now() / 1000 - this.startTime;
     }
 
-    //static class variables   
+    //static class variables
     static get START_WIDTH()
     {
         return (this._START_WIDTH) ? this._START_WIDTH : 40;
@@ -94,15 +87,11 @@ class Ring
     rotateUp()
     {
         this.ringSetting--;
-
-        this.direction = -1;
     }
 
     rotateDown()
     {
         this.ringSetting++;
-
-        this.direction = 1;
     }
 
     draw()
@@ -118,37 +107,11 @@ class Ring
         rect(this.topLeftX, this.topLeftY, this.width, this.height);
 
         //this.drawText();
-        //this.drawText2();
         this.drawTextScaled();
 
         pop();
 
         this.previousTime = Date.now() / 1000;
-    }
-
-    //50.4 rpm
-    drawText2()
-    {
-        push();
-
-        fill(0);
-//outputText = "delta time: " + this.deltaTime;
-        let charCodeA ='A'.charCodeAt(0);
-        let pos = this.getPosition(0);
-        let letter = String.fromCharCode(charCodeA + pos);
-        let formattedText = letter + String("0"+(pos+1)).slice(-2);
-
-        let startY = this.topLeftY + this.height/2;
-        let toY = startY + 1000;
-
-        //this.currentTime += this.deltaTime / 100;
-
-        //this.textY =  lerp(this.textY, height, constrain(this.currentTime, 0, 1));
-        this.textY =  lerp(this.textY, height, constrain(this.time , 0, 1));
-
-        text(formattedText, this.x, this.textY);
-
-        pop();
     }
 
     drawTextScaled()
@@ -162,11 +125,12 @@ class Ring
         textSize(sizeText);
 
 
-        let totalChars = 26;
+        let totalChars = this.length;
         let numLetters = totalChars / 2;
         let radius = this.height / 2;
         let angleBetween = 360 / totalChars;
-        let angleAt = 90 - 360 / totalChars * 7;
+
+        let angleAt = 90 - (360 / totalChars) * Math.round(numLetters/2);
 
         let relativeToOffset = this.rotor.translate + this.ringSetting + Math.floor(numLetters/2);
         let charCodeA ='A'.charCodeAt(0);
@@ -187,6 +151,7 @@ class Ring
             translate(this.x, y);
 
             scale(1, 1.2-(Math.abs(translateY) / radius));
+
             //scale(1, 1-Math.abs(cosRatioY));
             translate(-this.x, -y);
 
@@ -240,15 +205,14 @@ class Ring
             {
                 stroke(this.displayColor);
                 fill(this.displayColor);
+
             }
-            /*
             else
             {
-                stroke(200);
-                fill(200);
-            }*/
+                stroke(0);
+                fill(0);
+            }
 
-            //text(formattedText, this.x, this.topLeftY + this.height / (numLetters+1) * (i+1));
             text(formattedText, this.x, startY + (sizeText+spacing)*i);
             relativeToOffset--;
         }
