@@ -100,7 +100,7 @@ function createHelp()
     topDiv.style('font-size', '24px');
 
     //let a = createA('javascript:void(0)', '&times;');
-    let a = createA('javascript:void(0)', 'Close &#10006;');
+    let a = createA('javascript:void(0)', 'Close&nbsp;&#10006;');
     a.parent(topDiv);
     a.mouseClicked(closeHelpMenu);
     a.style('position', 'absolute');
