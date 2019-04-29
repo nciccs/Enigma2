@@ -311,7 +311,7 @@ function mouseReleased()
     keyboardDisplay.pressedKey = '';   
  
     let toSave = false;
-    if(!WidgetHandler.isDragging && WidgetHandler.holding instanceof Rotor && WidgetHandler.holding.collideRotorStack())
+    if(WidgetHandler.holding instanceof Rotor && WidgetHandler.holding.collideRotorStack())
     {
         toSave = true;
     }
